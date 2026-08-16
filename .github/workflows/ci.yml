@@ -19,7 +19,7 @@ jobs:
 
       - name: Check page references
         run: |
-          grep -q 'data/diseases.json' index.html || (echo "index.html missing data reference" && exit 1)
+          grep -q 'data/diseases.json' js/app.js || (echo "app.js missing data reference" && exit 1)
           grep -q 'js/app.js' index.html || (echo "index.html missing app script" && exit 1)
           grep -q 'css/style.css' index.html || (echo "index.html missing stylesheet" && exit 1)
 
