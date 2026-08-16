@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>医查通 · 疾病速查</title>
+  <meta name="description" content="医查通：输入疾病名称，快速查看症状、检查方法、治疗方法与预防建议。内容仅供科普参考。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#/" class="brand">
+        <span class="brand-mark">医</span>
+        <span class="brand-name">医查通 <small>MediRef</small></span>
+      </a>
+      <p class="tagline">常见疾病 · 症状 · 检查 · 治疗 · 预防</p>
+    </div>
+  </header>
+
+  <main class="container" id="app">
+    <section id="home-view" class="view">
+      <div class="search-box">
+        <input id="search-input" type="search" placeholder="输入疾病名称，如：高血压、感冒…" autocomplete="off">
+      </div>
+      <div id="category-bar" class="category-bar" aria-label="疾病分类筛选"></div>
+      <div id="disease-grid" class="disease-grid"></div>
+      <div id="empty-state" class="empty-state hidden">
+        <p>未找到相关疾病，换个关键词试试，或前往医院咨询专业医生。</p>
+      </div>
+    </section>
+
+    <section id="detail-view" class="view hidden">
+      <button id="back-button" class="back-button" type="button">← 返回列表</button>
+      <article id="detail-content"></article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>免责声明：</strong>本站内容仅供健康科普参考，不构成医疗建议，不能替代执业医师的诊断与治疗。如有身体不适，请及时前往正规医疗机构就诊。</p>
+      <p class="credit">医查通 MediRef · 开源项目，数据与页面持续更新中</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

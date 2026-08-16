@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate disease data
+        run: python3 scripts/validate.py
+
+      - name: Check page references
+        run: |
+          grep -q 'data/diseases.json' index.html || (echo "index.html missing data reference" && exit 1)
+          grep -q 'js/app.js' index.html || (echo "index.html missing app script" && exit 1)
+          grep -q 'css/style.css' index.html || (echo "index.html missing stylesheet" && exit 1)
+
+      - name: Smoke test (serve and fetch)
+        run: |
+          python3 -m http.server 8000 > /dev/null 2>&1 &
+          SERVER_PID=$!
+          sleep 1
+          curl -fsS http://127.0.0.1:8000/ > /dev/null
+          curl -fsS http://127.0.0.1:8000/data/diseases.json | python3 -c "import json,sys; data=json.load(sys.stdin); print(f'OK: served {len(data)} diseases')"
+          kill $SERVER_PID
